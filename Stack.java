@@ -66,30 +66,34 @@ public class Stack {
                 if(isNumeric(tok)){ // found number
                     stk.push(tok);// add the number to stack
                 }else{
-                Integer pint;
-                if(stk.size() > 1) // if there's at least 2 elements in stack
-                    switch(tok){ // found operators do calculation and push result in the stack
-                        case "+" :
-                            pint = Integer.parseInt(stk.pop()) + Integer.parseInt(stk.pop());
-                            stk.push(pint.toString());
-                        break;
-                        case "-": 
-                            pint = Integer.parseInt(stk.pop()) - Integer.parseInt(stk.pop());
-                            stk.push(pint.toString());
-                        break; 
-                        case "*" :
-                            pint = Integer.parseInt(stk.pop()) * Integer.parseInt(stk.pop());
-                            stk.push(pint.toString());
-                        break;
-                        case "/" :
-                            pint = Integer.parseInt(stk.pop()) / Integer.parseInt(stk.pop());
-                            stk.push(pint.toString());
-                        break;
-                        default : // found other letters
-                            stk.clear();
-                            i = dataLine.length()-1;// break this for loop
-                        break;
-                        
+                    Integer pint;
+                    if(stk.size() > 0){ // if there's at least 2 elements in stack
+                        switch(tok){ // found operators do calculation and push result in the stack
+                            case "+" :
+                                pint = Integer.parseInt(stk.pop()) + Integer.parseInt(stk.pop());
+                                stk.push(pint.toString());
+                            break;
+                            case "-": 
+                                pint = Integer.parseInt(stk.pop()) - Integer.parseInt(stk.pop());
+                                stk.push(pint.toString());
+                            break; 
+                            case "*" :
+                                pint = Integer.parseInt(stk.pop()) * Integer.parseInt(stk.pop());
+                                stk.push(pint.toString());
+                            break;
+                            case "/" :
+                                pint = Integer.parseInt(stk.pop()) / Integer.parseInt(stk.pop());
+                                stk.push(pint.toString());
+                            break;
+                            default : // found other letters
+                                stk.clear();
+                                i = dataLine.length()-1;// break this for loop
+                            break;
+                            
+                        }
+                    }else{ // elements of operation is more than number (cannot calculate)
+                        stk.clear();
+                        i = dataLine.length()-1;// break this for loop
                     }
                 }
             }
@@ -103,7 +107,7 @@ public class Stack {
             return false;
         }
         try {
-            double d = Double.parseDouble(strNum);
+            Double.parseDouble(strNum);
         } catch (NumberFormatException nfe) {
             return false;
         }
