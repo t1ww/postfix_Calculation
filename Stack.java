@@ -97,10 +97,12 @@ public class Stack {
                     }
                 }
             }
+            System.out.print(dataLine + "; ");
             isValid(stk);
             stk.clear();
             // end line
         }
+            System.out.println("//// program ends //");
 }
     public static boolean isNumeric(String strNum) {
         if (strNum == null) {
